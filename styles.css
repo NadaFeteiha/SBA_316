@@ -40,8 +40,34 @@ header {
     padding-top: 60px;
 }
 
-h2 {
+h2,
+h3 {
     color: #333;
     font-size: 24px;
     margin-bottom: 10px;
+}
+
+.div-Horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Style card div */
+.card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.card image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
