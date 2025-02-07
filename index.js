@@ -33,8 +33,18 @@ main.appendChild(latestNews);
 
 newsItems.forEach(news => {
     const newsCard = createNewsCard(news);
+
+    newsCard.addEventListener('mouseover', () => {
+        newsCard.style.backgroundColor = 'lightblue';
+    });
+
+    newsCard.addEventListener("mouseout", () => {
+        newsCard.style.backgroundColor = "white";
+    });
+
     latestNews.appendChild(newsCard);
 });
+
 
 function createNewsCard(news) {
     const newsCard = document.createElement("div");
