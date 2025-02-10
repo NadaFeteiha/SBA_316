@@ -1,6 +1,10 @@
 // form contact us
 
+// I changed the code to return fragment instead of the card "div"
+// because fragment is more efficient than div and also lightweight container
 export default function createContactCard() {
+    const fragment = document.createDocumentFragment();
+
     const contactCard = document.createElement("div");
     contactCard.classList = "card";
 
@@ -41,7 +45,9 @@ export default function createContactCard() {
 
     addContactCardEvents(submitButton, emailInput, messageInput, form);
 
-    return contactCard;
+    // append contact card to fragment
+    fragment.appendChild(contactCard);
+    return fragment; // here returning the fragment
 }
 
 function addContactCardEvents(submitButton, emailInput, messageInput, form) {
@@ -51,6 +57,7 @@ function addContactCardEvents(submitButton, emailInput, messageInput, form) {
         let result = validationForm(emailInput, messageInput);
         if (result) {
             alert("Thank you for your message!");
+            scrollTo({ top: 0, behavior: "smooth" });
             form.reset();
         }
     });

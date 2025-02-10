@@ -5,6 +5,7 @@ import contactCard from "./contact_us.js";
 const menu = document.getElementById("menu");
 const menuList = document.createElement("ul");
 
+/* the old way without template
 menuItems.forEach(item => {
     const mItem = document.createElement("li");
     const link = document.createElement("a");
@@ -12,6 +13,23 @@ menuItems.forEach(item => {
     link.textContent = item.text;
     mItem.appendChild(link);
     menuList.appendChild(mItem);
+});
+*/
+
+// here creating template for menu items
+const menuItemTemplate = document.createElement("li");
+const menuLink = document.createElement("a");
+menuItemTemplate.appendChild(menuLink);
+
+// here creating menu items using template
+// cloning template for better and faster performance
+// clone means copy the element and its children
+menuItems.forEach(item => {
+    const menuItemClone = menuItemTemplate.cloneNode(true);
+    const link = menuItemClone.querySelector("a");
+    link.href = item.href;
+    link.textContent = item.text;
+    menuList.appendChild(menuItemClone);
 });
 
 menu.appendChild(menuList);
