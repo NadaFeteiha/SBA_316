@@ -1,9 +1,4 @@
 // form contact us
-const submitButton = document.createElement("button");
-const form = document.createElement("form");
-const emailInput = document.createElement("input");
-const messageInput = document.createElement("textarea");
-
 
 export default function createContactCard() {
     const contactCard = document.createElement("div");
@@ -13,12 +8,14 @@ export default function createContactCard() {
     contactTitle.textContent = "Contact Us";
     contactCard.appendChild(contactTitle);
 
+    const form = document.createElement("form");
     contactCard.appendChild(form);
 
     const emailLabel = document.createElement("label");
     emailLabel.textContent = "Email:";
     form.appendChild(emailLabel);
 
+    const emailInput = document.createElement("input");
     emailInput.setAttribute("type", "email");
     emailInput.setAttribute("name", "email");
     form.appendChild(emailInput);
@@ -27,47 +24,63 @@ export default function createContactCard() {
     messageLabel.textContent = "Message:";
     form.appendChild(messageLabel);
 
+    const messageInput = document.createElement("textarea");
     messageInput.setAttribute("name", "message");
     form.appendChild(messageInput);
 
-
+    const submitButton = document.createElement("button");
     submitButton.textContent = "Submit";
     form.appendChild(submitButton);
 
+    addContactCardEvents(submitButton, emailInput, messageInput, form);
+    
     return contactCard;
 }
 
-submitButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    let result = validationForm();
-    if (result) {
-        alert("Thank you for your message!");
-        form.reset();
-    }
-});
+function addContactCardEvents(submitButton, emailInput, messageInput, form) {
 
-function validationForm() {
-    
-    if (!isValidEmail(emailInput.value)) {
-        alert("Invalid email address");
-        return false;
-    }
+    submitButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        let result = validationForm(emailInput, messageInput);
+        if (result) {
+            alert("Thank you for your message!");
+            form.reset();
+        }
+    });
 
-    if (messageInput.value === "") {
-        alert("Message cannot be empty");
-        return false;
-    }
+    emailInput.addEventListener("input", () => {
+        emailInput.classList.remove("error");
+    });
 
-    return true
+    messageInput.addEventListener("input", () => {
+        messageInput.classList.remove("error");
+    });
 }
 
+function validationForm(emailInput, messageInput) {
+    let result = true;
+    if (!isValidEmail(emailInput.value)) {
+        emailInput.classList.add("error");
+        result = false;
+    }
+
+    if (isEmptyText(messageInput.value)) {
+        messageInput.classList.add("error");
+        result = false;
+    }
+
+    return result;
+}
 
 function isValidEmail(email) {
-    if (email === "") {
+    if (isEmptyText(email)) {
         return false;
     }
 
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(email);
+}
 
+function isEmptyText(input) {
+    return typeof input === "string" && input.trim() === "";
 }
