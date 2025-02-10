@@ -28,12 +28,19 @@ export default function createContactCard() {
     messageInput.setAttribute("name", "message");
     form.appendChild(messageInput);
 
+    const messageError = document.createElement("span");
+    messageError.textContent = "Message cannot be empty!";
+    messageError.classList.add("error-message");
+    messageError.style.visibility = "hidden";
+
+    messageInput.parentNode.insertBefore(messageError, messageInput.nextElementSibling);
+
     const submitButton = document.createElement("button");
     submitButton.textContent = "Submit";
     form.appendChild(submitButton);
 
     addContactCardEvents(submitButton, emailInput, messageInput, form);
-    
+
     return contactCard;
 }
 
@@ -54,6 +61,7 @@ function addContactCardEvents(submitButton, emailInput, messageInput, form) {
 
     messageInput.addEventListener("input", () => {
         messageInput.classList.remove("error");
+        messageInput.nextElementSibling.style.visibility = "hidden";
     });
 }
 
@@ -66,6 +74,7 @@ function validationForm(emailInput, messageInput) {
 
     if (isEmptyText(messageInput.value)) {
         messageInput.classList.add("error");
+        messageInput.nextElementSibling.style.visibility = "visible";
         result = false;
     }
 
