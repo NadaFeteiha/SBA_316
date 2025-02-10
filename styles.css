@@ -63,8 +63,10 @@ h3 {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    min-width: 300px;
     text-align: center;
+    max-width: 400px;
+    margin: 20px auto;
 }
 
 .card-image {
@@ -79,7 +81,7 @@ h3 {
     margin: 10px 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 .card p {
@@ -89,4 +91,47 @@ h3 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
+}
+
+/* ************* contact us ************* */
+.card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.card label {
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 5px;
+    text-align: start;
+}
+
+.card input[type="email"],
+.card textarea {
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    outline: none;
+}
+
+.card textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.card button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+    background-color: #0056b3;
 }

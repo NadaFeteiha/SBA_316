@@ -1,4 +1,6 @@
 import { newsItems, menuItems } from "./data.js";
+import card from "./card.js";
+import contactCard from "./contact_us.js";
 
 const menu = document.getElementById("menu");
 const menuList = document.createElement("ul");
@@ -32,7 +34,7 @@ main.appendChild(latestNews);
 
 
 newsItems.forEach(news => {
-    const newsCard = createNewsCard(news);
+    const newsCard = card(news);
 
     newsCard.addEventListener('mouseover', () => {
         newsCard.style.backgroundColor = 'lightblue';
@@ -45,27 +47,6 @@ newsItems.forEach(news => {
     latestNews.appendChild(newsCard);
 });
 
+const contactUs = contactCard();
+main.appendChild(contactUs);
 
-function createNewsCard(news) {
-    const newsCard = document.createElement("div");
-
-    const image = document.createElement("img");
-    const title = document.createElement("h3");
-    const description = document.createElement("p");
-
-    // add data
-    image.src = news.image;
-    title.textContent = news.title;
-    description.textContent = news.description
-
-    //style
-    newsCard.classList.add("card");
-    image.classList.add("card-image");
-
-
-    // append to card
-    newsCard.appendChild(image);
-    newsCard.appendChild(title);
-    newsCard.appendChild(description);
-    return newsCard;
-}

@@ -1,6 +1,6 @@
 export const menuItems = [
     { text: 'Trending', href: '/trending' },
-    { text: 'News', href: '/news' },
+    { text: 'News', href: '/pages/news.html' },
     { text: 'Sports', href: '/sports' },
     { text: 'Entertainment', href: '/entertainment' },
     { text: 'Life', href: '/life' },
